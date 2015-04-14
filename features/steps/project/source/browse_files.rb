@@ -80,6 +80,10 @@ class Spinach::Features::ProjectSourceBrowseFiles < Spinach::FeatureSteps
   step 'I fill the commit message' do
     fill_in :commit_message, with: 'Not yet a commit message.'
   end
+ 
+  step 'I fill the commit message replace' do
+    fill_in :commit_message_replace, with: 'Not yet a commit message.'
+  end
 
   step 'I click link "Diff"' do
     click_link 'Preview changes'
@@ -97,6 +101,14 @@ class Spinach::Features::ProjectSourceBrowseFiles < Spinach::FeatureSteps
     click_button 'Remove file'
   end
 
+  step 'I click on "Replace"' do
+    click_button  "Replace"
+  end
+  
+  step 'I click on "Replace file"' do
+    click_button  'Replace file'
+  end
+  
   step 'I see diff' do
     expect(page).to have_css '.line_holder.new'
   end
@@ -106,8 +118,36 @@ class Spinach::Features::ProjectSourceBrowseFiles < Spinach::FeatureSteps
   end
 
   step 'I can see new file page' do
-    expect(page).to have_content "New file"
+    expect(page).to have_content "new file"
     expect(page).to have_content "Commit message"
+  end
+  
+  step 'I can see "upload existing one"' do
+    expect(page).to have_content "upload existing one"
+  end
+
+  step 'I can see the "user.feature"' do
+    expect(page).to have_content "user.feature"
+  end
+
+  step 'I click on "upload existing one"' do
+    click_link 'upload existing one'
+  end
+  
+  step 'I click on "Upload file"' do
+    click_button 'Upload file'
+  end
+  
+  step 'I upload "user.feature"' do
+    attach_file(:file_upload, File.join('features', 'user.feature'))
+  end
+
+  step 'I see the new content of the ".gitignore"' do
+    expect(page).to have_content "Copyright"
+  end
+  
+  step 'I replace it with "LICENSE"' do
+    attach_file(:file_upload, "LICENSE")
   end
 
   step 'I click on files directory' do

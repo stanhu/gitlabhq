@@ -146,10 +146,19 @@ class Projects::BlobController < Projects::ApplicationController
 
     @file_path =
       if action_name.to_s == 'create'
+        if params[:file_upload].present?
+          params[:file_name] = params[:file_upload].original_filename
+        end
         File.join(@path, File.basename(params[:file_name]))
       else
         @path
       end
+     
+    if params[:file_upload].present?
+      params[:content] = params[:file_upload].read
+      params[:encoding] = 'text'
+      params[:commit_message] = params[:commit_message_replace]
+    end
 
     @commit_params = {
       file_path: @file_path,
