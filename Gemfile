@@ -232,7 +232,7 @@ group :development, :test do
   gem 'pry-rails'
 
   gem 'coveralls',        '~> 0.8.2', require: false
-  gem 'database_cleaner', '~> 1.4.0'
+  gem 'database_cleaner', '~> 1.4.1'
   gem 'factory_girl_rails'
   gem 'rspec-rails',      '~> 3.3.0'
   gem 'rubocop',          '0.28.0',   require: false
