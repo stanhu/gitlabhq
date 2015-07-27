@@ -7,11 +7,10 @@ describe API::API, api: true  do
   let(:user2) { create(:user) }
   let(:user3) { create(:user) }
   let(:admin) { create(:admin) }
-  let(:group1) { create(:group) }
-  let(:group2) { create(:group) }
+  let!(:group1) { create(:group) }
+  let!(:group2) { create(:group) }
 
   before do
-    DatabaseCleaner.clean_with(:truncation)
     group1.add_owner(user1)
     group2.add_owner(user2)
   end
