@@ -11,7 +11,6 @@ describe API::API, api: true  do
   let(:group2) { create(:group) }
 
   before do
-    DatabaseCleaner.clean_with(:truncation)
     group1.add_owner(user1)
     group2.add_owner(user2)
   end
