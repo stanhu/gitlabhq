@@ -3,14 +3,6 @@ class Spinach::Features::AdminUsers < Spinach::FeatureSteps
   include SharedPaths
   include SharedAdmin
 
-  before do
-    allow(Devise).to receive(:omniauth_providers).and_return([:twitter, :twitter_updated])
-  end
-
-  after do
-    allow(Devise).to receive(:omniauth_providers).and_call_original
-  end
-
   step 'I should see all users' do
     User.all.each do |user|
       expect(page).to have_content user.name

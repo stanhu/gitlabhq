@@ -14,6 +14,7 @@ require 'sidekiq/testing/inline'
 
 require_relative 'capybara'
 require_relative 'db_cleaner'
+require_relative 'omniauth'
 
 %w(select2_helper test_env repo_helpers).each do |f|
   require Rails.root.join('spec', 'support', f)
@@ -33,4 +34,5 @@ Spinach.hooks.before_run do
   TestEnv.disable_pre_receive
 
   include FactoryGirl::Syntax::Methods
+  OmniAuthMock.mock_omniauth_providers
 end
