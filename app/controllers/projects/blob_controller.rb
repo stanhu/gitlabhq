@@ -28,13 +28,13 @@ class Projects::BlobController < Projects::ApplicationController
       flash[:notice] = "Your changes have been successfully committed"
       respond_to do |format|
         format.html {redirect_to namespace_project_blob_path(@project.namespace, @project, File.join(@target_branch, @file_path))}
-        format.json {render json: {message: "success", filePath: namespace_project_blob_path(@project.namespace, @project, File.join(@target_branch, @file_path))}}
+        format.json {render json: { message: "success", filePath: namespace_project_blob_path(@project.namespace, @project, File.join(@target_branch, @file_path)) }}
       end
     else
       flash[:alert] = result[:message]
       respond_to do |format|
         format.html {render :new}
-        format.json {render json: {message: "failed"}}
+        format.json {render json: { message: "failed" }}
       end
     end
   end
@@ -52,13 +52,13 @@ class Projects::BlobController < Projects::ApplicationController
     if result[:status] == :success
       respond_to do |format|
         format.html {redirect_to after_edit_path}
-        format.json {render json: {message: "success", filePath: after_edit_path}}
+        format.json {render json: { message: "success", filePath: after_edit_path }}
       end
     else
       flash[:alert] = result[:message]
       respond_to do |format|
         format.html {render :edit}
-        format.json {render json: {message: "failed"}}
+        format.json {render json: { message: "failed" }}
       end
     end
   end
