@@ -26,6 +26,5 @@ Dropzone.options.blobFileDropzone = {
       return
     @on 'success', (file, response)->
       window.location.href = response.filePath
-      alert(gon.max_file_size)
       return
 };
