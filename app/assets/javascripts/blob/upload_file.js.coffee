@@ -8,7 +8,6 @@ Dropzone.options.blobFileDropzone = {
   clickable: true,
   uploadMultiple: false,
   paramName: "file",
-  maxFilesize: 10,
   parallelUploads: 1,
   maxFiles: 1,
   addRemoveLinks: true,
@@ -19,12 +18,18 @@ Dropzone.options.blobFileDropzone = {
   init: -> 
     submitButton = document.querySelector('#submit-all')
     blobFileDropzone = this
+    blobFileDropzone.options.maxFilesize = gon.max_file_size or 10
     submitButton.addEventListener 'click', (e)->
       e.preventDefault()
       e.stopPropagation()
+      alert "Please select a file!" if blobFileDropzone.getQueuedFiles().length == 0
       blobFileDropzone.processQueue()
       return
     @on 'success', (file, response)->
       window.location.href = response.filePath
+      return
+    @on 'maxfilesexceeded', (file) ->
+      alert 'Only one file allowed please!'
+      @removeFile file
       return
 };
