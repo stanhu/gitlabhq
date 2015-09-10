@@ -40,10 +40,6 @@ Feature: Project Source Browse Files
     Then I can see new file page
     And I can see "upload existing one"
     And I click on "upload existing one"
-    And I upload "user.feature"
-    And I fill the commit message replace
-    And I click on "Upload file"
-    Then I can see the "user.feature"
 
   @javascript
   Scenario: I can create and commit file and specify new branch
@@ -149,11 +145,6 @@ Feature: Project Source Browse Files
     Given I click on ".gitignore" file in repo
     And I see the ".gitignore"
     And I click on "Replace"
-    And I replace it with "LICENSE"
-    And I fill the commit message replace
-    And I click on "Replace file"
-    And I am redirected to the ".gitignore"
-    Then I see the new content of the ".gitignore"
 
   Scenario: I can browse directory with Browse Dir
     Given I click on files directory

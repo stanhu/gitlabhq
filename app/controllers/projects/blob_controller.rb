@@ -26,10 +26,16 @@ class Projects::BlobController < Projects::ApplicationController
 
     if result[:status] == :success
       flash[:notice] = "Your changes have been successfully committed"
-      redirect_to namespace_project_blob_path(@project.namespace, @project, File.join(@target_branch, @file_path))
+      respond_to do |format|
+        format.html {redirect_to namespace_project_blob_path(@project.namespace, @project, File.join(@target_branch, @file_path))}
+        format.json {render json: {message: "success", filePath: namespace_project_blob_path(@project.namespace, @project, File.join(@target_branch, @file_path))}}
+      end
     else
       flash[:alert] = result[:message]
-      render :new
+      respond_to do |format|
+        format.html {render :new}
+        format.json {render json: {message: "failed"}}
+      end
     end
   end
 
@@ -44,11 +50,16 @@ class Projects::BlobController < Projects::ApplicationController
     result = Files::UpdateService.new(@project, current_user, @commit_params).execute
 
     if result[:status] == :success
-      flash[:notice] = "Your changes have been successfully committed"
-      redirect_to after_edit_path
+      respond_to do |format|
+        format.html {redirect_to after_edit_path}
+        format.json {render json: {message: "success", filePath: after_edit_path}}
+      end
     else
       flash[:alert] = result[:message]
-      render :edit
+      respond_to do |format|
+        format.html {render :edit}
+        format.json {render json: {message: "failed"}}
+      end
     end
   end
 
@@ -146,17 +157,17 @@ class Projects::BlobController < Projects::ApplicationController
 
     @file_path =
       if action_name.to_s == 'create'
-        if params[:file_upload].present?
-          params[:file_name] = params[:file_upload].original_filename
+        if params[:file].present?
+          params[:file_name] = params[:file].original_filename
         end
         File.join(@path, File.basename(params[:file_name]))
       else
         @path
       end
      
-    if params[:file_upload].present?
-      params[:content] = params[:file_upload].read
-      params[:encoding] = 'text'
+    if params[:file].present?
+      params[:content] = Base64.encode64(params[:file].read)
+      params[:encoding] = 'base64'
       params[:commit_message] = params[:commit_message_replace]
     end
 

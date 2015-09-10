@@ -2,6 +2,7 @@ Please view this file on the master branch, on stable branches it's out of date.
 
 v 8.0.0 (unreleased)
   - Gracefully handle errors in syntax highlighting by leaving the block unformatted (Stan Hu)
+  - Add "replace" and "upload" functionalities to allow user replace existing file and upload new file into current repository
   - Fix URL construction for merge requests, issues, notes, and commits for relative URL config (Stan Hu)
   - Fix emoji URLs in Markdown when relative_url_root is used (Stan Hu)
   - Omit filename in Content-Disposition header in raw file download to avoid RFC 6266 encoding issues (Stan HU)
@@ -172,7 +173,6 @@ v 7.13.0
   - Remove link leading to a 404 error in Deploy Keys page (Stan Hu)
   - Add support for unlocking users in admin settings (Stan Hu)
   - Add Irker service configuration options (Stan Hu)
-  - Add "replace" and "upload" functionalities to allow user replace existing file and upload new file into current repository
   - Fix order of issues imported form GitHub (Hiroyuki Sato)
   - Bump rugments to 1.0.0beta8 to fix C prototype function highlighting (Jonathon Reinhart)
   - Fix Merge Request webhook to properly fire "merge" action when accepted from the web UI

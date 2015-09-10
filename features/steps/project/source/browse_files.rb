@@ -1,3 +1,4 @@
+# coding: utf-8
 class Spinach::Features::ProjectSourceBrowseFiles < Spinach::FeatureSteps
   include SharedAuthentication
   include SharedProject
@@ -143,7 +144,8 @@ class Spinach::Features::ProjectSourceBrowseFiles < Spinach::FeatureSteps
   end
 
   step 'I see the new content of the ".gitignore"' do
-    expect(page).to have_content "Copyright"
+    Digest::MD5.hexdigest("LICENSE") == Digest::MD5.hexdigest(".gitignore")
+    Digest::MD5.hexdigest(".gitignore") != Digest::MD5.hexdigest(old_gitignore_content)
   end
   
   step 'I replace it with "LICENSE"' do
