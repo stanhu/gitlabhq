@@ -34,7 +34,7 @@ class Projects::BlobController < Projects::ApplicationController
       flash[:alert] = result[:message]
       respond_to do |format|
         format.html { render :new }
-        format.json { render json: { message: "failed" } }
+        format.json { render json: { message: "failed", filePath: request.referrer } }
       end
     end
   end
@@ -58,7 +58,7 @@ class Projects::BlobController < Projects::ApplicationController
       flash[:alert] = result[:message]
       respond_to do |format|
         format.html { render :edit }
-        format.json { render json: { message: "failed" } }
+        format.json { render json: { message: "failed", filePath: request.referrer } }
       end
     end
   end

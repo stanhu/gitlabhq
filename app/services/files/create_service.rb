@@ -19,8 +19,14 @@ module Files
       end
 
       unless project.empty_repo?
-        blob = repository.blob_at_branch(@current_branch, @file_path)
-
+        file_ph = '/'+File.basename(@file_path)
+        
+        if file_ph == @file_path
+          blob = repository.blob_at_branch(@current_branch, File.basename(@file_path))
+        else
+          blob = repository.blob_at_branch(@current_branch, @file_path)
+        end
+        
         if blob
           raise_error("Your changes could not be committed, because file with such name exists")
         end
