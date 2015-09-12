@@ -22,14 +22,14 @@ Dropzone.options.blobFileDropzone = {
     submitButton.addEventListener 'click', (e)->
       e.preventDefault()
       e.stopPropagation()
-      alert "Please select a file!" if blobFileDropzone.getQueuedFiles().length == 0
+      alert "Please select a file" if blobFileDropzone.getQueuedFiles().length == 0
       blobFileDropzone.processQueue()
       return
     @on 'success', (file, response)->
       window.location.href = response.filePath
       return
     @on 'maxfilesexceeded', (file) ->
-      alert 'Only one file allowed please!'
+      alert 'Only one file is allowed'
       @removeFile file
       return
 };
