@@ -15,7 +15,7 @@
                 .dropzone-previews
                   %p.dz-message You can drop a file here or click to upload.
                   .fallback
-                    = file_field_tag "file_upload", multiple: true, id: "upload_file"
+                    = file_field_tag "file_upload", multiple: false, id: "upload_file"
           %br
             = render 'shared/commit_message_container', params: params,
                   placeholder: 'Upload this file because...'

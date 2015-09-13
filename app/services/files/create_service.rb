@@ -19,9 +19,7 @@ module Files
       end
 
       unless project.empty_repo?
-        if @file_path.start_with?('/')
-          @file_path[0] = ''
-        end
+        @file_path.slice!(0) if @file_path.start_with?('/')
 
         blob = repository.blob_at_branch(@current_branch, @file_path)
 

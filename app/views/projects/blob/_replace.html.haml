@@ -15,7 +15,7 @@
                 .dropzone-previews
                   %p.dz-message You can drop a file here or click to upload.
                   .fallback
-                    = file_field_tag "file", multiple: true, id: "replace_file"
+                    = file_field_tag "file", multiple: false, id: "replace_file"
           %br
             = render 'shared/commit_message_container', params: params,
                   placeholder: 'Replace this file because...'
