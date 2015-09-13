@@ -19,14 +19,12 @@ module Files
       end
 
       unless project.empty_repo?
-        file_ph = '/'+File.basename(@file_path)
-        
-        if file_ph == @file_path
-          blob = repository.blob_at_branch(@current_branch, File.basename(@file_path))
-        else
-          blob = repository.blob_at_branch(@current_branch, @file_path)
+        if @file_path.start_with?('/')
+          @file_path[0] = ''
         end
-        
+
+        blob = repository.blob_at_branch(@current_branch, @file_path)
+
         if blob
           raise_error("Your changes could not be committed, because file with such name exists")
         end

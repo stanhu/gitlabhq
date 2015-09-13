@@ -14,8 +14,8 @@ Dropzone.options.blobFileDropzone = {
   previewsContainer: '.dropzone-previews',
   headers:
         "X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr("content"),
-  
-  init: -> 
+
+  init: ->
     submitButton = document.querySelector('#submit-all')
     blobFileDropzone = this
     blobFileDropzone.options.maxFilesize = gon.max_file_size or 10
@@ -29,7 +29,6 @@ Dropzone.options.blobFileDropzone = {
       window.location.href = response.filePath
       return
     @on 'maxfilesexceeded', (file) ->
-      alert 'Only one file is allowed'
       @removeFile file
       return
 };

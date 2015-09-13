@@ -164,11 +164,10 @@ class Projects::BlobController < Projects::ApplicationController
       else
         @path
       end
-     
+
     if params[:file].present?
       params[:content] = Base64.encode64(params[:file].read)
       params[:encoding] = 'base64'
-      params[:commit_message] = params[:commit_message_replace]
     end
 
     @commit_params = {

@@ -17,11 +17,11 @@
                   .fallback
                     = file_field_tag "file_upload", multiple: true, id: "upload_file"
           %br
-            = render 'shared/commit_message_replace_container', params: params,
+            = render 'shared/commit_message_container', params: params,
                   placeholder: 'Upload this file because...'
             .form-group
               .col-sm-offset-2.col-sm-10
                 = button_tag 'Upload file', class: 'btn btn-small btn-primary btn-upload-file', id: 'submit-all'
                 = link_to "Cancel", '#', class: "btn btn-cancel", "data-dismiss" => "modal"
 :coffeescript
-  disableButtonIfEmptyField '#commit_message_replace', '.btn-upload-file'
+  disableButtonIfEmptyField '#commit_message', '.btn-upload-file'

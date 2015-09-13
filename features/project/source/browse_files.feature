@@ -40,6 +40,22 @@ Feature: Project Source Browse Files
     Then I can see new file page
     And I can see "upload existing one"
     And I click on "upload existing one"
+    And I upload a new text file
+    And I fill the upload file commit message
+    And I click on "Upload file"
+    Then I can see the new text file
+    And I can see the new commit message
+
+  @javascript
+  Scenario: I can replace file and commit
+    Given I click on ".gitignore" file in repo
+    And I see the ".gitignore"
+    And I click on "Replace"
+    And I replace it with a text file
+    And I fill the replace file commit message
+    And I click on "Replace file"
+    Then I can see the new text file
+    And I can see the replacement commit message
 
   @javascript
   Scenario: I can create and commit file and specify new branch
@@ -139,12 +155,6 @@ Feature: Project Source Browse Files
     And I click on "Remove file"
     Then I am redirected to the files URL
     And I don't see the ".gitignore"
-
-  @javascript
-  Scenario: I can replace file and commit
-    Given I click on ".gitignore" file in repo
-    And I see the ".gitignore"
-    And I click on "Replace"
 
   Scenario: I can browse directory with Browse Dir
     Given I click on files directory
