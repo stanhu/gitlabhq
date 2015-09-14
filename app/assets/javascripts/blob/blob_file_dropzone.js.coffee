@@ -34,7 +34,7 @@ class @BlobFileDropzone
         return true
     )
 
-    submitButton = form.find('#submit-all')[0]
+    submitButton = form_dropzone.find('#submit-all')[0]
     submitButton.addEventListener 'click', (e) ->
       e.preventDefault()
       e.stopPropagation()
