@@ -24,7 +24,7 @@ module Files
         blob = repository.blob_at_branch(@current_branch, @file_path)
 
         if blob
-          raise_error("Your changes could not be committed, because file with such name exists")
+          raise_error("Your changes could not be committed because a file with the same name already exists")
         end
       end
     end
