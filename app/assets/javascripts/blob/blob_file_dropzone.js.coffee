@@ -32,9 +32,13 @@ class @BlobFileDropzone
         $('.dropzone-previews')[0].removeChild(file.previewTemplate)
         $('.dropzone-alerts').html('').hide()
         return true
+
+      sending: (file, xhr, formData) ->
+        formData.append('commit_message', document.querySelector('#commit_message_replace').value)
+        return
     )
 
-    submitButton = form_dropzone.find('#submit-all')[0]
+    submitButton = document.querySelector('#submit-all')
     submitButton.addEventListener 'click', (e) ->
       e.preventDefault()
       e.stopPropagation()
