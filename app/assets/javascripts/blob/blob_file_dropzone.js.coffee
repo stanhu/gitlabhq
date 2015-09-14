@@ -1,9 +1,14 @@
 class @BlobFileDropzone
-  constructor: (form_dropzone) ->
+  constructor: (form, method) ->
+    form_dropzone = form.find('.dropzone')
     Dropzone.autoDiscover = false
     dropzone = form_dropzone.dropzone(
       autoDiscover: false
       autoProcessQueue: false
+      url: form.attr('action')
+      # Rails uses a hidden input field for PUT
+      # http://stackoverflow.com/questions/21056482/how-to-set-method-put-in-form-tag-in-rails
+      method: method
       clickable: true
       uploadMultiple: false
       paramName: "file"
@@ -34,7 +39,7 @@ class @BlobFileDropzone
         return true
 
       sending: (file, xhr, formData) ->
-        formData.append('commit_message', document.querySelector('#commit_message_replace').value)
+        formData.append('commit_message', form.find('#commit_message').val())
         return
     )
 

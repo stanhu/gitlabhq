@@ -141,7 +141,7 @@ class Spinach::Features::ProjectSourceBrowseFiles < Spinach::FeatureSteps
 
   step 'I fill the upload file commit message' do
     page.within('#modal-upload-blob') do
-      fill_in :commit_message_replace, with: 'New upload commit message'
+      fill_in :commit_message, with: 'New upload commit message'
     end
   end
 
@@ -151,7 +151,7 @@ class Spinach::Features::ProjectSourceBrowseFiles < Spinach::FeatureSteps
 
   step 'I fill the replace file commit message' do
     page.within('#modal-replace-blob') do
-      fill_in :commit_message_replace, with: 'Replacement file commit message'
+      fill_in :commit_message, with: 'Replacement file commit message'
     end
   end
 

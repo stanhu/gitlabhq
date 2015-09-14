@@ -87,18 +87,6 @@ window.disableButtonIfAnyEmptyField = (form, form_selector, button_selector) ->
   updateButtons()
   form.keyup(updateButtons)
 
-# Disable button for blob_file_dropzone with separate commit message container
-window.disableButtonIfEmptyTextField = (field_selector, button_selector) ->
-  $(button_selector).attr 'disabled', true
-
-  $(field_selector).keyup ->
-    if $(this).val().length != 0
-      $(button_selector).attr 'disabled', false
-    else
-      $(button_selector).attr 'disabled', true
-    return
-  return
-
 window.sanitize = (str) ->
   return str.replace(/<(?:.|\n)*?>/gm, '')
 
